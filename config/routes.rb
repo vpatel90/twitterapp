@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'users/index'
 
   get 'users/:id' => 'users#show'
+  get 'tweets/:id' => 'tweets#show'
 
   get 'users' => 'users#index'
   get 'tweets' => 'tweets#index'

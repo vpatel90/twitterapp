@@ -1,5 +1,6 @@
 <h1>Tweets#index</h1>
 <p>Find me in app/views/tweets/index.html.erb</p>
 <% @tweets.each do |tweet| %>
-<p> <%= tweet.user.first_name %> <%= tweet.user.last_name %>: <%= tweet.body %> </p>
+<p> <a href="/users/<%= tweet.user.id %>">$<%= tweet.user.handle %></a>:
+    <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;"><%= tweet.body %></a> </p>
 <% end %>
