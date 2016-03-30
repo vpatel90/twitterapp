@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 5.times do
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email)
+  user = User.create(handle:Faker::Internet.user_name, first_name:Faker::Name.first_name, last_name:Faker::Name.last_name, email: Faker::Internet.email)
   rand(2..5).times do
-    Tweet.create(body: Faker::Lorem.sentence, user_id:user.id)
+    Tweet.create(body: Faker::Hipster.sentence(5, false, 7), user_id:user.id)
   end
 end
