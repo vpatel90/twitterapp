@@ -15,16 +15,17 @@ ActiveRecord::Schema.define(version: 20160330200302) do
 
   create_table "tweets", force: :cascade do |t|
     t.text     "body"
-    t.integer  "User_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "parent_tweet_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "tweets", ["User_id"], name: "index_tweets_on_User_id"
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
     t.string   "email"
     t.text     "bio"
     t.datetime "created_at", null: false
