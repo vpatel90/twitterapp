@@ -3,7 +3,15 @@
 <h1><a href="/users/<%= @user.id %>">$<%= @user.handle %></a></h1>
 <h3>Name: <%= @user.first_name %> <%= @user.last_name %></h3>
 <h3> Tweets </h3>
-<% @user.tweets.each do |tweet| %>
+<% @tweets.each do |tweet| %>
 <p> <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;">
   <%= tweet.body %></a> </p>
 <% end %>
+<ul>
+  <% unless @page.to_i <= 1 %>
+    <li> <a href="/users/<%= @user.id %>?page=<%= @page.to_i - 1%>"> Previous </a></li>
+  <% end %>
+  <% unless @page.to_i * 25 >= @user.tweets.count  %>
+    <li> <a href="/users/<%= @user.id %>?page=<%= @page.to_i + 1%>"> Next </a></li>
+  <% end %>
+</ul>

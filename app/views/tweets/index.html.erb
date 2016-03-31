@@ -1,6 +1,15 @@
 <h1>Tweets#index</h1>
 <p>Find me in app/views/tweets/index.html.erb</p>
 <% @tweets.each do |tweet| %>
-<p> <a href="/users/<%= tweet.user.id %>">$<%= tweet.user.handle %></a>:
-    <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;"><%= tweet.body %></a> </p>
+<p><a href="/users/<%= tweet.user.id %>">$<%= tweet.user.handle %></a>:
+    <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;">
+      <%= tweet.body %></a> </p>
 <% end %>
+<ul>
+  <% unless @page.to_i <= 1 %>
+    <li> <a href="/tweets?page=<%= @page.to_i - 1%>"> Previous </a></li>
+  <% end %>
+  <% unless @page.to_i * 25 >= Tweet.count  %>
+    <li> <a href="/tweets?page=<%= @page.to_i + 1%>"> Next </a></li>
+  <% end %>
+</ul>
