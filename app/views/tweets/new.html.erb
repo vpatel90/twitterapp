@@ -1,4 +1,7 @@
 <h1> hi there </h1>
+<% if @error %>
+<h3> Invalid Input </h3>
+<% end %>
 <form action='/tweets' method="post" accept-charset="utf-8" id='new-tweet'>
   <label for='body'>Tweet</label>
     <textarea name='body' id='body'></textarea>

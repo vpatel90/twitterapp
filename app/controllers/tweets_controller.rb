@@ -17,9 +17,13 @@ class TweetsController < ApplicationController
   end
 
   def create
-    user = User.first
-    Tweet.create(body: params[:body], user_id: user.id)
-    redirect_to "/"
+    if params[:body].nil? || params[:body].empty?
+      redirect_to "/tweets/new?error=true"
+    else
+      user = User.first
+      Tweet.create(body: params[:body], user_id: user.id)
+      redirect_to "/"
+    end
   end
 
   def edit
@@ -28,10 +32,18 @@ class TweetsController < ApplicationController
   end
 
   def update
-    @tweet = get_tweet_at_id
-    @tweet.body = params[:body]
-    @tweet.save
-    redirect_to "/tweets/#{@tweet.id}"
+    if params[:body].nil? || params[:body].empty?
+      redirect_to "/tweets/new?error=true"
+    else
+      @tweet = get_tweet_at_id
+      @tweet.body = params[:body]
+      @tweet.save
+      redirect_to "/tweets/#{@tweet.id}"
+    end
+  end
+
+  def destroy
+
   end
 
   private
