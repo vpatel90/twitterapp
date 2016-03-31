@@ -2,8 +2,10 @@
 <p>Find me in app/views/tweets/index.html.erb</p>
 <% @tweets.each do |tweet| %>
 <p><a href="/users/<%= tweet.user.id %>">$<%= tweet.user.handle %></a>:
-    <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;">
-      <%= tweet.body %></a> </p>
+    <%= tweet.updated_at.strftime('%x') %> at <%= tweet.updated_at.strftime('%r') %></p>
+<p><a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;">
+    <%= tweet.body %></a> </p>
+      <br>
 <% end %>
 <ul>
   <% unless @page.to_i <= 1 %>

@@ -4,8 +4,10 @@
 <h3>Name: <%= @user.first_name %> <%= @user.last_name %></h3>
 <h3> Tweets </h3>
 <% @tweets.each do |tweet| %>
+<p><%= tweet.updated_at.strftime('%x') %> at <%= tweet.updated_at.strftime('%r') %></p>
 <p> <a href="/tweets/<%= tweet.id %>" style="text-decoration:none;color:black;">
   <%= tweet.body %></a> </p>
+  <br>
 <% end %>
 <ul>
   <% unless @page.to_i <= 1 %>
