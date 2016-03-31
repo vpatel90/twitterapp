@@ -1,0 +1,6 @@
+<h1> hi there </h1>
+<form action='/tweets/<%= @tweet.id %>' method="post" accept-charset="utf-8" id='update-tweet'>
+  <label for='body'>Tweet</label>
+    <textarea name='body' id='body'><%= @tweet.body %></textarea>
+  <input type='submit' name='commit' id='update_tweet'  />
+</form>

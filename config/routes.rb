@@ -4,12 +4,16 @@ Rails.application.routes.draw do
   get 'tweets/show'
 
   get 'users/index'
-
+  get 'tweets/:id/edit' => 'tweets#edit'
+  get 'tweets/new' => 'tweets#new'
+  post 'tweets/:id' => 'tweets#update'
+  post 'tweets' => 'tweets#create'
   get 'users/:id' => 'users#show'
   get 'tweets/:id' => 'tweets#show'
 
   get 'users' => 'users#index'
   get 'tweets' => 'tweets#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

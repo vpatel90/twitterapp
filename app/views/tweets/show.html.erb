@@ -2,4 +2,5 @@
 <p>Find me in app/views/tweets/show.html.erb</p>
 <h1><a href="/users/<%= @tweet.user.id %>">$<%= @tweet.user.handle %></a></h1>
 <h3> Tweet </h3>
+<p><a href="/tweets/<%= @tweet.id %>/edit"> Edit </a></p>
 <p><%= @tweet.body %></p>

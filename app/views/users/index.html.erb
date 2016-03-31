@@ -1,2 +1,14 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+<% @users.each do |user| %>
+<p><a href="/users/<%= user.id %>">$<%= user.handle %></a>:
+    <%= user.first_name %> <%= user.last_name %></p>
+<% end %>
+<ul>
+  <% unless @page.to_i <= 1 %>
+    <li> <a href="/users?page=<%= @page.to_i - 1%>"> Previous </a></li>
+  <% end %>
+  <% unless @page.to_i * 25 >= User.count  %>
+    <li> <a href="/users?page=<%= @page.to_i + 1%>"> Next </a></li>
+  <% end %>
+</ul>

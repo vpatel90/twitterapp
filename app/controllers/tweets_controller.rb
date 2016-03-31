@@ -6,11 +6,32 @@ class TweetsController < ApplicationController
     else
       @tweets = get_tweets_by_search
     end
-
   end
 
   def show
     @tweet = get_tweet_at_id
+  end
+
+  def new
+    @error = params[:error]
+  end
+
+  def create
+    user = User.first
+    Tweet.create(body: params[:body], user_id: user.id)
+    redirect_to "/"
+  end
+
+  def edit
+    @tweet = get_tweet_at_id
+    @error = params[:error]
+  end
+
+  def update
+    @tweet = get_tweet_at_id
+    @tweet.body = params[:body]
+    @tweet.save
+    redirect_to "/tweets/#{@tweet.id}"
   end
 
   private
@@ -20,10 +41,10 @@ class TweetsController < ApplicationController
   end
 
   def get_tweets
-    Tweet.limit(25).offset((@page.to_i - 1)*25)
+    Tweet.order(updated_at: :desc).limit(25).offset((@page.to_i - 1)*25)
   end
 
   def get_tweets_by_search
-    Tweet.where("body LIKE '%#{params[:search]}%'").limit(25).offset((@page.to_i - 1)*25)
+    Tweet.where("body LIKE '%#{params[:search]}%'").order(updated_at: :desc).limit(25).offset((@page.to_i - 1)*25)
   end
 end
